@@ -119,7 +119,7 @@ const LoginForm = () => {
             New Here ?{" "}
             <span
               onClick={handleSignUpRedirect}
-              className="underline text-blue-600 font-semibold"
+              className="underline text-blue-600 font-semibold cursor-pointer"
             >
               SignUp
             </span>
