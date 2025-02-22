@@ -2,12 +2,16 @@ import { Mail, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "./ui/input";
 import { useNavigate } from "react-router-dom";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import { validateEmail } from "@/validation/loginValidate";
-import { email, password } from "@/constants/data";
+
+import { noPatientsRoute, signUpRoute } from "@/constants/urls";
+import { UserContext } from "@/context/UserContext";
+import { userEmail, userPassword } from "@/constants/data";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const { saveUser, user } = useContext(UserContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,6 +21,12 @@ const LoginForm = () => {
     password: "",
     loginError: "",
   });
+
+  useEffect(() => {
+    if (user) {
+      navigate(noPatientsRoute);
+    }
+  }, [user]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -45,16 +55,19 @@ const LoginForm = () => {
       setErrors(newErrors);
       return;
     }
-    if (formData.email !== email || formData.password !== password) {
+    if (formData.email !== userEmail || formData.password !== userPassword) {
       newErrors.loginError = "Invalid Credentials";
       setErrors(newErrors);
       return;
     }
+    const { password, ...userData } = formData;
+    saveUser(userData);
+    navigate(noPatientsRoute);
     console.log(formData);
   };
 
   const handleSignUpRedirect = () => {
-    navigate("/register");
+    navigate(signUpRoute);
   };
   return (
     <div className="w-full h-full flex justify-center items-center my-auto">

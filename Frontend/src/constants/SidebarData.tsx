@@ -22,7 +22,7 @@ const UserIcon = ()=>{
     )
 }
 
-export const sideBarData =[
+export const initialSideBarData =[
     {
         title:"Total Patients",
         numbers:0,
@@ -36,6 +36,24 @@ export const sideBarData =[
     {
         title:"Closed Applications",
         numbers:0,
+        icon:checkIcon()
+    }
+]
+
+export const withPatientsSideBarData =[
+    {
+        title:"Total Patients",
+        numbers:4,
+        icon: UserIcon()
+    },
+    {
+        title:"Open Applications",
+        numbers:2,
+        icon:shieldIcon()
+    },
+    {
+        title:"Closed Applications",
+        numbers:2,
         icon:checkIcon()
     }
 ]

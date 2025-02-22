@@ -4,14 +4,16 @@ import { Input } from "./ui/input";
 import PatientTable from "./PatientTable";
 import Pagiantion from "./Pagiantion";
 import { useNavigate } from "react-router-dom";
+import ChatIcon from "./personalAssistant/ChatIcon";
+import { newPatientRoute, patientListRoute } from "@/constants/urls";
 
 const TotalPatientsList = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col w-[800px] px-5 gap-y-5 h-screen">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-x-2">
-          <ArrowLeft onClick={()=>navigate('/dashboard/patientlist') } />
+          <ArrowLeft className="text-cyan-600 " onClick={() => navigate(patientListRoute)} />
           <span className="font-semibold text-xl">Total Patients(4)</span>
         </div>
 
@@ -34,7 +36,11 @@ const TotalPatientsList = () => {
               className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white "
               size={20}
             />
-            <Button className="pl-10 bg-cyan-600" variant={"primary"} onClick={()=> navigate('/newpatient')}>
+            <Button
+              className="pl-10 bg-cyan-600"
+              variant={"primary"}
+              onClick={() => navigate(newPatientRoute)}
+            >
               Add New
             </Button>
           </div>
@@ -79,6 +85,7 @@ const TotalPatientsList = () => {
         </div>
         <Pagiantion />
       </div>
+      <ChatIcon />
     </div>
   );
 };

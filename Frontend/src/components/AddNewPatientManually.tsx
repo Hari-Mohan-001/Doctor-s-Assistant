@@ -18,6 +18,7 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Input } from "./ui/input";
+import ChatIcon from "./personalAssistant/ChatIcon";
 
 const AddNewPatientManually = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
@@ -32,66 +33,74 @@ const AddNewPatientManually = () => {
             <Input type="text" placeholder="First name" />
             <Input type="text" placeholder="Last name" />
           </div>
-          <div className="flex gap-2 ">
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant={"outline"}
-                className={cn(
-                  "w-full justify-start text-left font-normal",
-                  !date && "text-muted-foreground text-gray-500"
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, "PPP") : "Date of birth"}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
-              <Calendar
-                mode="single"
-                selected={date}
-                onSelect={(date: Date | undefined) => setDate(date)}
-                initialFocus
-              />
-            </PopoverContent>
-          </Popover>
 
-          <Select>
-            <SelectTrigger className="text-gray-600 bg-white">
-              <SelectValue placeholder="Gender" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="male">Male</SelectItem>
-              <SelectItem value="female">Female</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="flex gap-2 ">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  className={cn(
+                    "w-full justify-start text-left font-normal",
+                    !date && "text-muted-foreground text-gray-500"
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {date ? format(date, "PPP") : "Date of birth"}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar
+                  mode="single"
+                  selected={date}
+                  onSelect={(date: Date | undefined) => setDate(date)}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
+
+            <Select>
+              <SelectTrigger className="text-gray-600 bg-white">
+                <SelectValue placeholder="Gender" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="male">Male</SelectItem>
+                <SelectItem value="female">Female</SelectItem>
+                <SelectItem value="other">Other</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
+
+        <div className="flex flex-col gap-y-2">
+          <span className="uppercase text-sm">Medical profile</span>
+          <div className="flex flex-col gap-y-3">
+            <div>
+              <span className="text-xs capitalize">current condition</span>
+              <Input className="h-16" placeholder="start typing here" />
+            </div>
+            <div>
+              <span className="text-xs capitalize">
+                Ongoing medication(if any)
+              </span>
+              <Input className="h-16" placeholder="start typing here" />
+            </div>
+            <div>
+              <span className="text-xs capitalize">goal</span>
+              <Input className="h-16" placeholder="start typing here" />
+            </div>
+          </div>
         </div>
         <div className="flex flex-col gap-y-2">
-             <span className="uppercase text-sm">Medical profile</span>
-             <div className="flex flex-col gap-y-3">
-                <div>
-                <span className="text-xs capitalize">current condition</span>
-                <Input className="h-16" placeholder="start typing here"/>
-                </div>
-                <div>
-                <span className="text-xs capitalize">Ongoing medication(if any)</span>
-                <Input className="h-16" placeholder="start typing here"/>
-                </div>
-                <div>
-                <span className="text-xs capitalize">goal</span>
-                <Input className="h-16" placeholder="start typing here"/>
-                </div>
-             </div>  
-        </div>
-        <div className="flex flex-col gap-y-2">
-        <span className="uppercase text-sm">Contact details</span>
-        <div className="flex gap-x-2">
-        <Input type="text" placeholder="Email" />
-        <Input type="text" placeholder="Phone Number" />   
-        </div>
-        <Input className="w-1/2" type="text" placeholder="Emergency contact Number" />
+          <span className="uppercase text-sm">Contact details</span>
+          <div className="flex gap-x-2">
+            <Input type="text" placeholder="Email" />
+            <Input type="text" placeholder="Phone Number" />
+          </div>
+          <Input
+            className="w-1/2"
+            type="text"
+            placeholder="Emergency contact Number"
+          />
         </div>
 
         <div className="flex gap-x-2 justify-end ">
@@ -99,6 +108,7 @@ const AddNewPatientManually = () => {
           <Button className="bg-cyan-600 text-white">Save</Button>
         </div>
       </div>
+      <ChatIcon />
     </div>
   );
 };

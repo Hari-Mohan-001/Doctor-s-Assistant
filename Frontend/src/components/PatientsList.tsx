@@ -1,14 +1,14 @@
-import {
-  Plus,
-  SearchIcon,
-  Upload,
-} from "lucide-react";
+import { Plus, SearchIcon, Upload } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import PatientTable from "./PatientTable";
 import Pagiantion from "./Pagiantion";
+import { useNavigate } from "react-router-dom";
+import ChatIcon from "./personalAssistant/ChatIcon";
+import { newPatientRoute } from "@/constants/urls";
 
 const PatientsList = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col w-[800px] px-5 gap-y-5 h-screen">
       <div className="flex justify-between items-center">
@@ -32,7 +32,11 @@ const PatientsList = () => {
               className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white "
               size={20}
             />
-            <Button className="pl-10 bg-cyan-600" variant={"primary"}>
+            <Button
+              className="pl-10 bg-cyan-600"
+              variant={"primary"}
+              onClick={() => navigate(newPatientRoute)}
+            >
               Add New
             </Button>
           </div>
@@ -57,6 +61,7 @@ const PatientsList = () => {
         </div>
         <Pagiantion />
       </div>
+      <ChatIcon />
     </div>
   );
 };

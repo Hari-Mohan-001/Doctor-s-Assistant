@@ -17,6 +17,7 @@ import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import ChatIcon from "./personalAssistant/ChatIcon";
 
 const AddNewPatientScribble = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
@@ -66,13 +67,14 @@ const AddNewPatientScribble = () => {
           </SelectContent>
         </Select>
       </div>
-      <div className="bg-white h-80 shadow-lg rounded-md">
 
-      </div>
+      <div className="bg-white h-80 shadow-lg rounded-md"></div>
+
       <div className="flex gap-x-2 justify-end ">
         <Button className="bg-cyan-200 text-cyan-600">Cancel</Button>
         <Button className="bg-cyan-600 text-white">Organise</Button>
       </div>
+      <ChatIcon />
     </div>
   );
 };

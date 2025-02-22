@@ -1,16 +1,14 @@
-import AddNewPatientScribble from "@/components/AddNewPatientScribble"
-import Header from "@/components/Header"
-
+import AddNewPatientScribble from "@/components/AddNewPatientScribble";
+import Header from "@/components/Header";
 
 const AddNewPatientPage = () => {
   return (
     <div className="bg-blue-50 w-full min-h-screen">
-    <Header showSearch={false}/>
-    
-    <AddNewPatientScribble/>
-    
-</div>
-  )
-}
+      <Header showSearch={false} />
 
-export default AddNewPatientPage
+      <AddNewPatientScribble />
+    </div>
+  );
+};
+
+export default AddNewPatientPage;

@@ -1,15 +1,11 @@
-
-import DoctorRoutes from "./routes/DoctorRoutes"
-
+import DoctorRoutes from "./routes/DoctorRoutes";
 
 function App() {
-
-
   return (
     <>
-     <DoctorRoutes/>
+      <DoctorRoutes />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
