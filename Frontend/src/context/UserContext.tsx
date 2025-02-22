@@ -4,12 +4,14 @@ interface UserContextType {
     user: any;
     saveUser: (userData: any) => void;
     logoutUser: () => void;
+    loading:boolean
   }
 
   const defaultUserContext: UserContextType = {
     user: null,
     saveUser: () => {},
     logoutUser: () => {},
+    loading:true
   };
 
   export const UserContext = createContext<UserContextType>(defaultUserContext)
@@ -17,14 +19,15 @@ interface UserContextType {
   export const UserContextProvider = ({children }:any)=>{
 
     const[ user, setUser] = useState(null)
+    const [loading , setLoading] = useState(true); // Track loading state
 
     useEffect(()=>{
-        console.log('frst')
+        console.log('first')
         const storedUser = localStorage.getItem("user")
         if(storedUser){
-            console.log('secnd')
             setUser(JSON.parse(storedUser))
         }
+        setLoading(false); // Mark loading as complete
     },[])
 
     const saveUser = (userData:any)=>{
@@ -38,8 +41,8 @@ interface UserContextType {
     }
 
     return(
-        <UserContext.Provider value={{saveUser, logoutUser,user }}>
-            {children}
+        <UserContext.Provider value={{saveUser,loading, logoutUser,user }}>
+            {!loading && children}
         </UserContext.Provider>
     )
 
