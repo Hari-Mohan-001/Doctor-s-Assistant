@@ -15,6 +15,7 @@ import PrivateRoute from "./PrivateRoute";
 const DoctorRoutes = () => {
   return (
     <Routes>
+      <Route path="/" element={<LoginPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
 
